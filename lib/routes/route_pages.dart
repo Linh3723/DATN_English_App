@@ -12,15 +12,15 @@ class AppPages{
         page: () => const SplashScreen(),
     ),
     GetPage(
-      name: AppRoutes.splash,
+      name: AppRoutes.onboarding,
       page: () => const OnboardingScreen(),
     ),
     GetPage(
-      name: AppRoutes.splash,
+      name: AppRoutes.login,
       page: () => const LoginScreen(),
     ),
     GetPage(
-      name: AppRoutes.splash,
+      name: AppRoutes.home,
       page: () => const HomeScreen(),
     ),
   ];
