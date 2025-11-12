@@ -1,14 +1,18 @@
+import 'package:english_app/bloc/auth/auth_bloc.dart';
 import 'package:english_app/bloc/font/font_bloc.dart';
 import 'package:english_app/bloc/font/font_state.dart';
 import 'package:english_app/core/theme/app_theme.dart';
 import 'package:english_app/routes/app_routes.dart';
 import 'package:english_app/routes/route_pages.dart';
+import 'package:english_app/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+
+  await StorageService.init();
   runApp(const MyApp());
 }
 
@@ -21,6 +25,9 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<FontBloc>(
               create: (context) => FontBloc(),
+          ),
+          BlocProvider<AuthBloc>(
+              create: (context) => AuthBloc(),
           ),
         ],
         child: BlocBuilder<FontBloc, FontState>(
