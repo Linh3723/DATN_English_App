@@ -28,7 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _handleLogin(){
     if(_formkey.currentState!.validate()){
       // handle login logic here
-      Get.offAllNamed(AppRoutes.home);
+      Get.offAllNamed(AppRoutes.main);
     }
   }
   Widget build(BuildContext context) {
