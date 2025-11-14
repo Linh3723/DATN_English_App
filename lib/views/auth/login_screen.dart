@@ -1,16 +1,220 @@
+import 'package:english_app/core/utils/validators.dart';
+import 'package:english_app/routes/app_routes.dart';
+import 'package:english_app/views/widgets/common/custom_button.dart';
+import 'package:english_app/views/widgets/common/custom_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _formkey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _handleLogin(){
+    if(_formkey.currentState!.validate()){
+      // handle login logic here
+      Get.offAllNamed(AppRoutes.home);
+    }
+  }
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Login Screen',
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // top wave design
+            Container(
+              height: size.height * 0.3,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Theme.of(context).primaryColor,
+                    Theme.of(context).primaryColor.withOpacity(0.8),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(100),
+                ),
+              ),
+              child: const Stack(
+                children: [
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.school,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Chào mừng quay lại!',
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  const SizedBox(height: 40),
+                  Form(
+                    key: _formkey,
+                    child: Column(
+                      children: [
+                        CustomTextfield(
+                          label: 'Email',
+                          prefixIcon: Icons.email_outlined,
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          validator: FormValidator.validateEmail,
+                        ),
+                        const SizedBox(height: 20),
+
+                        CustomTextfield(
+                          label: 'Mật khẩu',
+                          prefixIcon: Icons.lock_outline,
+                          controller: _passwordController,
+                          obscureText: true,
+                          validator: FormValidator.validatePassword,
+                        ),
+                        const SizedBox(height: 20),
+
+                        // Forgot password
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: TextButton(
+                            onPressed: () => Get.toNamed(AppRoutes.forgotPassword),
+                            child: Text(
+                              'Quên mật khẩu?',
+                              style: TextStyle(
+                                color: Theme.of(context).primaryColor,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 20),
+                        // login button
+                        CustomButton(
+                          text: 'Đăng nhập',
+                          onPressed: _handleLogin,
+                        ),
+
+                        const SizedBox(height: 20),
+
+                      ],
+                    ),
+                  ),
+
+
+
+                  // social login
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Divider(color: Colors.grey.shade300),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          'Hoặc đăng nhập với'
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(color: Colors.grey.shade300),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+
+                  // social login buttons
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _socialLoginButton(
+                        icon: Icons.g_mobiledata,
+                        onPressed: (){},
+                      ),
+                      _socialLoginButton(
+                        icon: Icons.facebook,
+                        onPressed: (){},
+                      ),
+                      _socialLoginButton(
+                        icon: Icons.apple,
+                        onPressed: (){},
+                      ),
+                    ],
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // register link
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text("Bạn chưa có tài khoản?"),
+                      TextButton(
+                        onPressed: () => Get.toNamed(AppRoutes.register),
+                        child: Text(
+                          'Đăng ký',
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
+  }
+
+  Widget _socialLoginButton({
+    required IconData icon,
+    required VoidCallback onPressed,
+  }){
+   return CustomButton(
+     icon: icon,
+     isFullWidth: false,
+     height: 50,
+     text: '',
+     onPressed: onPressed,
+     isOutlined: true,
+   );
   }
 }

@@ -63,10 +63,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       Get.offNamed(AppRoutes.onboarding);
     } else if (authState.userModel != null){
       // navigate to home screen
-      Get.offNamed(AppRoutes.onboarding);
+      Get.offNamed(AppRoutes.home);
     } else {
       // navigate to login screen
-      Get.offNamed(AppRoutes.onboarding);
+      Get.offNamed(AppRoutes.login);
     }
   }
 

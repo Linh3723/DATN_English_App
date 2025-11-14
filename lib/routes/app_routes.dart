@@ -1,7 +1,10 @@
+import 'package:english_app/views/auth/forgot_password_screen.dart';
 import 'package:english_app/views/auth/login_screen.dart';
+import 'package:english_app/views/auth/register_screen.dart';
 import 'package:english_app/views/home/home_screen.dart';
 import 'package:english_app/views/onboarding/onboarding_screen.dart';
 import 'package:english_app/views/splash/splash_screen.dart';
+import 'package:english_app/views/teacher/teacher_home_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes{
@@ -10,9 +13,12 @@ class AppRoutes{
   static const String splash = '/splash';
   static const String onboarding = '/onboarding';
   static const String login = '/login';
+  static const String register = '/register';
+  static const String forgotPassword = '/forgot-password';
   static const String home = '/home';
 
-
+  // teacher
+  static const String teacherHome = '/teacher/home';
 
   static Route<dynamic> onGenerateRoute(RouteSettings setting){
     switch(setting.name){
@@ -30,10 +36,21 @@ class AppRoutes{
         return MaterialPageRoute(
           builder: (_) => const LoginScreen(),
         );
-
+      case register:
+        return MaterialPageRoute(
+          builder: (_) => const RegisterScreen(),
+        );
+      case forgotPassword:
+        return MaterialPageRoute(
+          builder: (_) => const ForgotPasswordScreen(),
+        );
       case home:
         return MaterialPageRoute(
           builder: (_) => const HomeScreen(),
+        );
+      case teacherHome:
+        return MaterialPageRoute(
+          builder: (_) => const TeacherHomeScreen(),
         );
 
 
