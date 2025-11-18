@@ -2,7 +2,7 @@ import 'package:english_app/models/lesson.dart';
 
 class Course {
   final String id;
-  final String tittle;
+  final String title;
   final String description;
   final String imageUrl;
   final String instructorId;
@@ -21,7 +21,7 @@ class Course {
 
   Course({
     required this.id,
-    required this.tittle,
+    required this.title,
     required this.description,
     required this.imageUrl,
     required this.instructorId,
@@ -41,7 +41,7 @@ class Course {
 
   factory Course.fromJson(Map<String, dynamic> json) => Course(
     id: json['id'],
-    tittle: json['tittle'],
+    title: json['title'],
     description: json['description'],
     imageUrl: json['imageUrl'],
     instructorId: json['instructorId'],
@@ -61,7 +61,7 @@ class Course {
 
   Map<String, dynamic> toJson() => {
     'id': id,
-    'tittle': tittle,
+    'title': title,
     'description': description,
     'imageUrl': imageUrl,
     'instructorId': instructorId,

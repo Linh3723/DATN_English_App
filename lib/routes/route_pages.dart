@@ -44,11 +44,14 @@ class AppPages{
     ),
     GetPage(
       name: AppRoutes.home,
-      page: () => const HomeScreen(),
+      page: () => HomeScreen(),
     ),
     GetPage(
       name: AppRoutes.courseList,
-      page: () => const CourseListScreen(),
+      page: () => CourseListScreen(
+        categoryId: Get.arguments?['category'] as String?,
+        categoryName: Get.arguments?['category'] as String?,
+      ),
     ),
     GetPage(
       name: AppRoutes.quizList,
