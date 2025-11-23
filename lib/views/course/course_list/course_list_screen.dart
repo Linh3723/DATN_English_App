@@ -1,14 +1,119 @@
+import 'package:english_app/core/theme/app_colors.dart';
+import 'package:english_app/services/dummy_data_service.dart';
+import 'package:english_app/views/course/course_list/widgets/course_card.dart';
+import 'package:english_app/views/course/course_list/widgets/course_filter_dialog.dart';
+import 'package:english_app/views/course/course_list/widgets/empty_state_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class CourseListScreen extends StatelessWidget {
-  const CourseListScreen({super.key});
+  final String? categoryId;
+  final String? categoryName;
+  final bool showBackButton;
+
+  const CourseListScreen({
+    super.key,
+    this.categoryId,
+    this.categoryName,
+    this.showBackButton = false,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final courses = categoryId != null
+        ? DummyDataService.getCourseByCategory(categoryId!)
+        : DummyDataService.courses;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Course List Screen'),
+      backgroundColor: AppColors.lightBackground,
+      body: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 200,
+            pinned: true,
+            backgroundColor: AppColors.primary,
+            automaticallyImplyLeading: categoryId != null || showBackButton,
+            leading: (categoryId != null || showBackButton)
+                ? IconButton(
+                    onPressed: () => Get.back(),
+                    icon: const Icon(Icons.arrow_back),
+                  )
+                : null,
+            actions: [
+              IconButton(
+                onPressed: () => _showFillterDialog(context),
+                icon: const Icon(
+                  Icons.filter_list,
+                  color: AppColors.accent,
+                ),
+              ),
+            ],
+            flexibleSpace: FlexibleSpaceBar(
+              titlePadding: const EdgeInsets.all(6),
+              title: Text(
+                categoryName ?? 'All Course',
+                style: theme.textTheme.headlineMedium?.copyWith(
+                  color: AppColors.accent,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              background: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.primary,
+                      AppColors.primaryLight,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          if(courses.isEmpty)
+            SliverFillRemaining(
+              child: EmptyStateWidget(
+                onActionPressed: () => Get.back(),
+              ),
+            )
+          else 
+            SliverPadding(
+              padding: EdgeInsets.all(16),
+              sliver: SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (context, index){
+                    final course = courses[index];
+                    return CourseCard(
+                      courseId: course.id,
+                      title: course.title,
+                      subtitle: course.description,
+                      imageUrl: course.imageUrl,
+                      rating: course.rating,
+                      duration: '${course.lessons.length * 30} mins',
+                      isPremium: course.isPremium,
+                    );
+                  },
+                  childCount: courses.length,
+                ),
+              ),
+            ),
+        ],
       ),
+    );
+  }
+
+  void _showFillterDialog(BuildContext context){
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+      builder: (context) => const CourseFilterDialog(),
     );
   }
 }
