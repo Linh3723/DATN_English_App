@@ -17,7 +17,7 @@ class DummyDataService {
       imageUrl: 'https://cdn-icons-png.flaticon.com/512/5295/5295318.png',
       instructorId: 'inst_1',
       categoryId: '1',
-      price: 100000,
+      price: 0,
       lessons: _createListeningLessons(),
       level: 'Cơ bản',
       requirements: [
@@ -43,7 +43,8 @@ class DummyDataService {
       imageUrl: 'https://cdn-icons-png.flaticon.com/512/1683/1683145.png',
       instructorId: 'inst_2',
       categoryId: '2',
-      price: 100000,
+      isPremium: true,
+      price: 199999,
       lessons: _createSpeakingLessons(),
       level: 'Cơ bản',
       requirements: [
@@ -69,7 +70,7 @@ class DummyDataService {
       imageUrl: 'https://cdn-icons-png.flaticon.com/512/8750/8750683.png',
       instructorId: 'inst_3',
       categoryId: '3',
-      price: 100000,
+      price: 0,
       lessons: _createReadingLessons(),
       level: 'Cơ bản',
       requirements: [
@@ -95,7 +96,7 @@ class DummyDataService {
       imageUrl: 'https://cdn-icons-png.flaticon.com/512/4659/4659027.png',
       instructorId: 'inst_4',
       categoryId: '4',
-      price: 100000,
+      price: 0,
       lessons: _createWritingLessons(),
       level: 'Cơ bản',
       requirements: [
@@ -504,7 +505,9 @@ class DummyDataService {
   }
 
   // add a set to store purchased course IDs
-  static final Set<String> _purchasedCourseIds = {};
+  static final Set<String> _purchasedCourseIds = {
+
+  };
 
   // add methods to manage purchased courses
   static bool isCourseUnlocked(String courseId){

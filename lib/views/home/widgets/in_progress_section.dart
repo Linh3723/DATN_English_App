@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:english_app/core/theme/app_colors.dart';
 import 'package:english_app/services/dummy_data_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:shimmer/shimmer.dart';
 
 class InProgressSection extends StatelessWidget {
@@ -142,5 +144,13 @@ class InProgressSection extends StatelessWidget {
     BuildContext context,
     String courseId,
     int lastLesson,
-  ) {}
+  ) {
+    Get.toNamed(
+      '/course/$courseId',
+      parameters: {
+        'id' : courseId,
+        'lastLesson' : lastLesson.toString(),
+      }
+    );
+  }
 }
