@@ -4,10 +4,12 @@ import 'package:english_app/views/auth/login_screen.dart';
 import 'package:english_app/views/auth/register_screen.dart';
 import 'package:english_app/views/course/course_detail/course_detail_screen.dart';
 import 'package:english_app/views/course/course_list/course_list_screen.dart';
+import 'package:english_app/views/course/lesson_screen/lesson_screen.dart';
 import 'package:english_app/views/course/payment/payment_screen.dart';
 import 'package:english_app/views/home/home_screen.dart';
 import 'package:english_app/views/onboarding/onboarding_screen.dart';
 import 'package:english_app/views/profile/profile_screen.dart';
+import 'package:english_app/views/quiz/quiz_attempt/quiz_attempt_screen.dart';
 import 'package:english_app/views/quiz/quiz_list/quiz_list_screen.dart';
 import 'package:english_app/views/splash/splash_screen.dart';
 import 'package:english_app/views/teacher/teacher_home_screen.dart';
@@ -30,9 +32,11 @@ class AppRoutes{
   static const String courseList = '/courses';
   static const String courseDetail = '/course/:id';
   static const String payment = '/payment';
+  static const String lesson = '/lesson/:id';
 
   // quiz routes
   static const String quizList = '/quizzes';
+  static const String quizAttempt = '/quiz/:id';
 
   // profile routes
   static const String profile = '/profile';
@@ -108,6 +112,22 @@ class AppRoutes{
       case quizList:
         return MaterialPageRoute(
           builder: (_) => const QuizListScreen(),
+        );
+
+      case quizAttempt:
+        final quizId = setting.arguments as String?;
+        return MaterialPageRoute(
+          builder: (_) => QuizAttemptScreen(
+            quizId: quizId ?? '',
+          ),
+        );
+
+      case lesson:
+        final lessonId = setting.arguments as String?;
+        return MaterialPageRoute(
+          builder: (_) => LessonScreen(
+            lessonId: lessonId ?? '',
+          ),
         );
 
       case profile:

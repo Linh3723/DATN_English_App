@@ -5,6 +5,7 @@ import 'package:english_app/views/auth/login_screen.dart';
 import 'package:english_app/views/auth/register_screen.dart';
 import 'package:english_app/views/course/course_detail/course_detail_screen.dart';
 import 'package:english_app/views/course/course_list/course_list_screen.dart';
+import 'package:english_app/views/course/lesson_screen/lesson_screen.dart';
 import 'package:english_app/views/course/payment/payment_screen.dart';
 import 'package:english_app/views/home/home_screen.dart';
 import 'package:english_app/views/onboarding/onboarding_screen.dart';
@@ -44,7 +45,16 @@ class AppPages {
       name: '/course/:id',
       page: () => CourseDetailScreen(courseId: Get.parameters['id'] ?? ''),
     ),
-    GetPage(name: AppRoutes.quizList, page: () => const QuizListScreen()),
+    GetPage(
+      name: AppRoutes.quizList,
+      page: () => const QuizListScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.lesson,
+      page: () => LessonScreen(
+        lessonId: Get.parameters['id'] ?? '',
+      ),
+    ),
     GetPage(
       name: AppRoutes.payment,
       page: () => PaymentScreen(

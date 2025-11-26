@@ -146,7 +146,7 @@ class DummyDataService {
         id: '1',
         title: 'Giới thiệu khóa học',
         description: 'Tổng quan mục tiêu khóa học, cách học hiệu quả, và công cụ luyện nghe được sử dụng.',
-        videoUrl: '',
+        videoUrl: 'https://raw.githubusercontent.com/Linh3723/my_video/main/Listening_1.mp4',
         duration: 30,
         resources: _createDummyResources(),
         isPreview: true,
@@ -199,7 +199,7 @@ class DummyDataService {
       id: 'lesson_$id',
       title: title,
       description: '$title',
-      videoUrl: '',
+      videoUrl: 'https://raw.githubusercontent.com/Linh3723/my_video/main/Listening_1.mp4',
       duration: 30,
       resources: _createDummyResources(),
       isPreview: isPreview,
@@ -212,8 +212,14 @@ class DummyDataService {
     return[
       Resource(
         id: 'res_1',
-        title: 'Tài liệu học tập',
+        title: 'Tài liệu học tập 1',
         type: 'pdf',
+        url: '',
+      ),
+      Resource(
+        id: 'res_2',
+        title: 'Tài liệu học tập 2',
+        type: 'zip',
         url: '',
       ),
     ];

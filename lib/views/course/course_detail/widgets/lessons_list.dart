@@ -1,4 +1,5 @@
 import 'package:english_app/core/theme/app_colors.dart';
+import 'package:english_app/routes/app_routes.dart';
 import 'package:english_app/services/dummy_data_service.dart';
 import 'package:english_app/views/course/course_detail/widgets/lesson_title.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,15 @@ class LessonsList extends StatelessWidget {
                 duration: const Duration(seconds: 3),
               );
             } else {
-              // navigate to leson screen
+              // navigate to lesson screen
+              final result = await Get.toNamed(
+                AppRoutes.lesson.replaceAll(':id', lesson.id),
+                parameters: {'courseId': courseId},
+              );
+
+              if(result == true){
+                onLessonComplete?.call();
+              }
             }
           },
         );
