@@ -22,7 +22,7 @@ class ProfileOptions extends StatelessWidget {
           title: 'Nhắc nhở',
           subtitle: 'Quản lý nhắc nhở của bạn',
           icon: Icons.notifications_outlined,
-          onTap: () {},
+          onTap: () => Get.toNamed(AppRoutes.notifications),
         ),
         ProfileOptionsCard(
           title: 'Cài đặt',
