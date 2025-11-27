@@ -27,7 +27,7 @@ class QuizAttempt {
       answers: Map<String, String>.from(json['answers'] ?? {}),
       score: json['score'] ?? 0,
       startedAt: DateTime.parse(json['startedAt']),
-      completedAt: json['completedAt'] != null ? DateTime.parse(json['completeAt']) : null,
+      completedAt: json['completedAt'] != null ? DateTime.parse(json['completedAt']) : null,
       timeSpent: json['timeSpent'] ?? 0,
     );
   }

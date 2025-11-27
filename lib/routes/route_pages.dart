@@ -1,4 +1,6 @@
 import 'package:english_app/main_screen.dart';
+import 'package:english_app/models/quiz.dart';
+import 'package:english_app/models/quiz_attempt.dart';
 import 'package:english_app/routes/app_routes.dart';
 import 'package:english_app/views/auth/forgot_password_screen.dart';
 import 'package:english_app/views/auth/login_screen.dart';
@@ -10,7 +12,9 @@ import 'package:english_app/views/course/payment/payment_screen.dart';
 import 'package:english_app/views/home/home_screen.dart';
 import 'package:english_app/views/onboarding/onboarding_screen.dart';
 import 'package:english_app/views/profile/profile_screen.dart';
+import 'package:english_app/views/quiz/quiz_attempt/quiz_attempt_screen.dart';
 import 'package:english_app/views/quiz/quiz_list/quiz_list_screen.dart';
+import 'package:english_app/views/quiz/quiz_result/quiz_result_screen.dart';
 import 'package:english_app/views/splash/splash_screen.dart';
 import 'package:english_app/views/teacher/teacher_home_screen.dart';
 import 'package:get/get.dart';
@@ -48,6 +52,19 @@ class AppPages {
     GetPage(
       name: AppRoutes.quizList,
       page: () => const QuizListScreen(),
+    ),
+    GetPage(
+      name: '/quiz/:id',
+      page: () => QuizAttemptScreen(
+        quizId: Get.parameters['id'] ?? '',
+      ),
+    ),
+    GetPage(
+      name: '/quiz/:id',
+      page: () => QuizResultScreen(
+        attempt: Get.arguments('attempt') as QuizAttempt,
+        quiz: Get.arguments['quiz'] as Quiz,
+      ),
     ),
     GetPage(
       name: AppRoutes.lesson,
