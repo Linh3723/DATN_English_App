@@ -1,4 +1,10 @@
+import 'package:english_app/core/theme/app_colors.dart';
+import 'package:english_app/core/utils/app_dialogs.dart';
+import 'package:english_app/routes/app_routes.dart';
+import 'package:english_app/views/teacher/teacher_home/widgets/dashboard_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class TeacherHomeScreen extends StatelessWidget {
   const TeacherHomeScreen({super.key});
@@ -6,8 +12,75 @@ class TeacherHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Teacher Home Screen"),
+      backgroundColor: AppColors.lightBackground,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 200,
+            pinned: true,
+            backgroundColor: AppColors.primary,
+            actions: [
+              IconButton(
+                onPressed: () async {
+                  final confirm = await AppDialogs.showLogoutDialog();
+                  if (confirm == true) {
+                    Get.offAllNamed(AppRoutes.login);
+                  }
+                },
+                icon: Icon(Icons.logout, color: AppColors.accent),
+              ),
+            ],
+            flexibleSpace: FlexibleSpaceBar(
+              title: const Text(
+                'Teacher Dashboard',
+                style: TextStyle(color: AppColors.accent),
+              ),
+              background: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [AppColors.primary, AppColors.primaryLight],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          SliverPadding(
+            padding: const EdgeInsets.all(16),
+            sliver: SliverGrid(
+              delegate: SliverChildListDelegate([
+                DashboardCard(
+                  title: 'Khóa học của tôi',
+                  icon: Icons.book,
+                  onTap: () {},
+                ),
+                DashboardCard(
+                  title: 'Thêm khóa học',
+                  icon: Icons.add_circle,
+                  onTap: () {},
+                ),
+                DashboardCard(
+                  title: 'Phân tích',
+                  icon: Icons.analytics,
+                  onTap: () {},
+                ),
+                DashboardCard(
+                  title: 'Học sinh',
+                  icon: Icons.people,
+                  onTap: () {},
+                ),
+              ],),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 1,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
