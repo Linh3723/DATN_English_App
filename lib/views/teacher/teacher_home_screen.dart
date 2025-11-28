@@ -54,7 +54,7 @@ class TeacherHomeScreen extends StatelessWidget {
                 DashboardCard(
                   title: 'Khóa học của tôi',
                   icon: Icons.book,
-                  onTap: () {},
+                  onTap: () => Get.toNamed(AppRoutes.myCourses),
                 ),
                 DashboardCard(
                   title: 'Thêm khóa học',
@@ -70,6 +70,11 @@ class TeacherHomeScreen extends StatelessWidget {
                   title: 'Học sinh',
                   icon: Icons.people,
                   onTap: () {},
+                ),
+                DashboardCard(
+                  title: 'Tin nhắn',
+                  icon: Icons.chat,
+                  onTap: () => Get.toNamed(AppRoutes.teacherChats),
                 ),
               ],),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

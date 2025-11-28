@@ -527,7 +527,7 @@ class DummyDataService {
 
   // Teacher-specific dummy data
   static final Map<String, TeacherStats> teacherStats = {
-    'ints_1': TeacherStats(
+    'inst_1': TeacherStats(
       totalStudents: 1234,
       activeCourses: 8,
       totalRevenue: 12345.67,
@@ -552,7 +552,7 @@ class DummyDataService {
     'inst_1': [
       StudentProgress(
         studentId: 'student_1',
-        studentName: 'ABC',
+        studentName: 'Nguyễn Văn A',
         courseId: '1',
         courseName: 'Kỹ năng nghe',
         progress: 0.70,
@@ -564,7 +564,7 @@ class DummyDataService {
       ),
       StudentProgress(
         studentId: 'student_2',
-        studentName: 'XYZ',
+        studentName: 'Trần Thị B',
         courseId: '1',
         courseName: 'Kỹ năng đọc',
         progress: 0.60,
@@ -636,7 +636,7 @@ class DummyDataService {
         senderId: 'student_1',
         receiverId: 'inst_1',
         courseId: '1',
-        message: 'Thưa thầy, em có điều muốn hỏi',
+        message: 'Thưa thầy, em muốn hỏi về bài kiểm tra lần trước',
         timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
       ),
       ChatMessage(
@@ -645,13 +645,13 @@ class DummyDataService {
         receiverId: 'inst_1',
         courseId: '1',
         message: 'Khi nào có bài học tiếp theo ạ',
-        timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
+        timestamp: DateTime.now().subtract(const Duration(days: 10)),
       ),
       ChatMessage(
         id: '3',
-        senderId: 'student_4',
+        senderId: 'student_2',
         receiverId: 'inst_1',
-        courseId: '2',
+        courseId: '3',
         message: 'Thầy có thể làm thêm bài kiểm tra được không ạ',
         timestamp: DateTime.now().subtract(const Duration(hours: 1)),
       ),

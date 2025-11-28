@@ -2,6 +2,7 @@ import 'package:english_app/main_screen.dart';
 import 'package:english_app/views/auth/forgot_password_screen.dart';
 import 'package:english_app/views/auth/login_screen.dart';
 import 'package:english_app/views/auth/register_screen.dart';
+import 'package:english_app/views/chat/chat_list_screen.dart';
 import 'package:english_app/views/course/course_detail/course_detail_screen.dart';
 import 'package:english_app/views/course/course_list/course_list_screen.dart';
 import 'package:english_app/views/course/lesson_screen/lesson_screen.dart';
@@ -13,6 +14,7 @@ import 'package:english_app/views/profile/profile_screen.dart';
 import 'package:english_app/views/quiz/quiz_attempt/quiz_attempt_screen.dart';
 import 'package:english_app/views/quiz/quiz_list/quiz_list_screen.dart';
 import 'package:english_app/views/splash/splash_screen.dart';
+import 'package:english_app/views/teacher/my_courses/my_courses_screen.dart';
 import 'package:english_app/views/teacher/teacher_home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -48,6 +50,9 @@ class AppRoutes{
 
   // teacher
   static const String teacherHome = '/teacher/home';
+  static const String myCourses = '/teacher/courses';
+  static const String teacherChats = '/teacher/chats';
+
 
   static Route<dynamic> onGenerateRoute(RouteSettings setting){
     switch(setting.name){
@@ -93,6 +98,16 @@ class AppRoutes{
       case teacherHome:
         return MaterialPageRoute(
           builder: (_) => const TeacherHomeScreen(),
+        );
+
+      case teacherChats:
+        return MaterialPageRoute(
+          builder: (_) => const ChatListScreen(),
+        );
+
+      case myCourses:
+        return MaterialPageRoute(
+          builder: (_) => const MyCoursesScreen(),
         );
 
       case courseList:

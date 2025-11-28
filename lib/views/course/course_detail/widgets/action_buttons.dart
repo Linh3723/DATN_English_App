@@ -1,6 +1,7 @@
 import 'package:english_app/models/course.dart';
 import 'package:english_app/routes/app_routes.dart';
 import 'package:english_app/services/dummy_data_service.dart';
+import 'package:english_app/views/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -17,23 +18,22 @@ class ActionButtons extends StatelessWidget {
         Expanded(
           child: ElevatedButton.icon(
             onPressed: () {
-              if(course.isPremium && !DummyDataService.isCourseUnlocked(course.id)){
+              if (course.isPremium &&
+                  !DummyDataService.isCourseUnlocked(course.id)) {
                 // navigate to payment screen if the course is premium and not purchased
                 Get.toNamed(
                   AppRoutes.payment,
                   arguments: {
-                    'courseId' : course.id,
-                    'courseName' : course.title,
-                    'price' : course.price,
+                    'courseId': course.id,
+                    'courseName': course.title,
+                    'price': course.price,
                   },
                 );
-              } else{
+              } else {
                 // navigate to first lesson if course is free or already purchased
                 Get.toNamed(
                   AppRoutes.lesson.replaceAll(':id', course.lessons.first.id),
-                  parameters: {
-                    'courseId' : course.id,
-                  }
+                  parameters: {'courseId': course.id},
                 );
               }
             },
@@ -42,12 +42,17 @@ class ActionButtons extends StatelessWidget {
           ),
         ),
         // only show chat button if course is not premium or if it's unlocked
-        if(!course.isPremium || DummyDataService.isCourseUnlocked(course.id)) ...[
+        if (!course.isPremium ||
+            DummyDataService.isCourseUnlocked(course.id)) ...[
           const SizedBox(width: 16),
           IconButton(
-            onPressed: (){
-              // navigate to chat screen
-            },
+            onPressed: () => Get.to(
+              () => ChatScreen(
+                courseId: course.id,
+                instructorId: course.instructorId,
+                isTeacherView: false,
+              ),
+            ),
             icon: const Icon(Icons.chat),
           ),
         ],
