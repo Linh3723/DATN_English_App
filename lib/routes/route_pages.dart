@@ -18,6 +18,7 @@ import 'package:english_app/views/quiz/quiz_attempt/quiz_attempt_screen.dart';
 import 'package:english_app/views/quiz/quiz_list/quiz_list_screen.dart';
 import 'package:english_app/views/quiz/quiz_result/quiz_result_screen.dart';
 import 'package:english_app/views/splash/splash_screen.dart';
+import 'package:english_app/views/teacher/create_course/create_course_screen.dart';
 import 'package:english_app/views/teacher/my_courses/my_courses_screen.dart';
 import 'package:english_app/views/teacher/teacher_home_screen.dart';
 import 'package:get/get.dart';
@@ -88,5 +89,7 @@ class AppPages {
     GetPage(name: AppRoutes.teacherHome, page: () => const TeacherHomeScreen()),
     GetPage(name: AppRoutes.myCourses, page: () => const MyCoursesScreen()),
     GetPage(name: AppRoutes.teacherChats, page: () => const ChatListScreen()),
+    GetPage(name: AppRoutes.createCourse, page: () => const CreateCourseScreen()),
+
   ];
 }

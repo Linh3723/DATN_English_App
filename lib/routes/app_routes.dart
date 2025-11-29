@@ -14,6 +14,7 @@ import 'package:english_app/views/profile/profile_screen.dart';
 import 'package:english_app/views/quiz/quiz_attempt/quiz_attempt_screen.dart';
 import 'package:english_app/views/quiz/quiz_list/quiz_list_screen.dart';
 import 'package:english_app/views/splash/splash_screen.dart';
+import 'package:english_app/views/teacher/create_course/create_course_screen.dart';
 import 'package:english_app/views/teacher/my_courses/my_courses_screen.dart';
 import 'package:english_app/views/teacher/teacher_home_screen.dart';
 import 'package:flutter/material.dart';
@@ -52,6 +53,7 @@ class AppRoutes{
   static const String teacherHome = '/teacher/home';
   static const String myCourses = '/teacher/courses';
   static const String teacherChats = '/teacher/chats';
+  static const String createCourse = '/teacher/courses/create';
 
 
   static Route<dynamic> onGenerateRoute(RouteSettings setting){
@@ -60,7 +62,7 @@ class AppRoutes{
         return MaterialPageRoute(
             builder: (_) => const SplashScreen(),
         );
-        
+
       case onboarding:
         return MaterialPageRoute(
           builder: (_) => const OnboardingScreen(),
@@ -110,6 +112,11 @@ class AppRoutes{
           builder: (_) => const MyCoursesScreen(),
         );
 
+      case createCourse:
+        return MaterialPageRoute(
+          builder: (_) => const CreateCourseScreen(),
+        );
+
       case courseList:
         final args = setting.arguments as Map<String, dynamic>?;
         return MaterialPageRoute(
@@ -128,7 +135,7 @@ class AppRoutes{
           courseId = uri.pathSegments.last;
         }
         return MaterialPageRoute(builder: (_) => CourseDetailScreen(courseId: courseId));
-            
+
       case quizList:
         return MaterialPageRoute(
           builder: (_) => const QuizListScreen(),
