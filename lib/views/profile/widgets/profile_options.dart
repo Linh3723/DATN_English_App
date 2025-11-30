@@ -16,7 +16,7 @@ class ProfileOptions extends StatelessWidget {
           title: 'Chỉnh sửa',
           subtitle: 'Chỉnh sửa thông tin cá nhân của bạn',
           icon: Icons.edit_outlined,
-          onTap: () {},
+          onTap: () => Get.toNamed(AppRoutes.editProfile),
         ),
         ProfileOptionsCard(
           title: 'Nhắc nhở',

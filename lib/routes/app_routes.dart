@@ -11,6 +11,7 @@ import 'package:english_app/views/course/payment/payment_screen.dart';
 import 'package:english_app/views/home/home_screen.dart';
 import 'package:english_app/views/notifications/notification_screen.dart';
 import 'package:english_app/views/onboarding/onboarding_screen.dart';
+import 'package:english_app/views/profile/edit_profile_screen.dart';
 import 'package:english_app/views/profile/profile_screen.dart';
 import 'package:english_app/views/quiz/quiz_attempt/quiz_attempt_screen.dart';
 import 'package:english_app/views/quiz/quiz_list/quiz_list_screen.dart';
@@ -50,6 +51,7 @@ class AppRoutes{
 
   // profile routes
   static const String profile = '/profile';
+  static const String editProfile = '/profile/edit';
   static const String notifications = '/notifications';
 
 
@@ -176,6 +178,11 @@ class AppRoutes{
       case profile:
         return MaterialPageRoute(
           builder: (_) => const ProfileScreen(),
+        );
+
+      case editProfile:
+        return MaterialPageRoute(
+          builder: (_) => const EditProfileScreen(),
         );
 
       case notifications:
