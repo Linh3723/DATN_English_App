@@ -69,7 +69,7 @@ class TeacherHomeScreen extends StatelessWidget {
                 DashboardCard(
                   title: 'Học sinh',
                   icon: Icons.people,
-                  onTap: () {},
+                  onTap: () => Get.toNamed(AppRoutes.studentProgress),
                 ),
                 DashboardCard(
                   title: 'Tin nhắn',
