@@ -6,6 +6,7 @@ import 'package:english_app/views/auth/forgot_password_screen.dart';
 import 'package:english_app/views/auth/login_screen.dart';
 import 'package:english_app/views/auth/register_screen.dart';
 import 'package:english_app/views/chat/chat_list_screen.dart';
+import 'package:english_app/views/course/analytics_dashboard/analytics_dashboard_screen.dart';
 import 'package:english_app/views/course/course_detail/course_detail_screen.dart';
 import 'package:english_app/views/course/course_list/course_list_screen.dart';
 import 'package:english_app/views/course/lesson_screen/lesson_screen.dart';
@@ -87,6 +88,7 @@ class AppPages {
       ),
     ),
     GetPage(name: AppRoutes.profile, page: () => const ProfileScreen()),
+    GetPage(name: AppRoutes.analytics, page: () => AnalyticsDashboardScreen()),
     GetPage(name: AppRoutes.notifications, page: () => const NotificationScreen()),
     GetPage(name: AppRoutes.teacherHome, page: () => const TeacherHomeScreen()),
     GetPage(name: AppRoutes.myCourses, page: () => const MyCoursesScreen()),

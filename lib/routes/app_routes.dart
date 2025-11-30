@@ -3,6 +3,7 @@ import 'package:english_app/views/auth/forgot_password_screen.dart';
 import 'package:english_app/views/auth/login_screen.dart';
 import 'package:english_app/views/auth/register_screen.dart';
 import 'package:english_app/views/chat/chat_list_screen.dart';
+import 'package:english_app/views/course/analytics_dashboard/analytics_dashboard_screen.dart';
 import 'package:english_app/views/course/course_detail/course_detail_screen.dart';
 import 'package:english_app/views/course/course_list/course_list_screen.dart';
 import 'package:english_app/views/course/lesson_screen/lesson_screen.dart';
@@ -38,6 +39,7 @@ class AppRoutes{
   static const String courseList = '/courses';
   static const String courseDetail = '/course/:id';
   static const String payment = '/payment';
+  static const String analytics = '/analytics';
   static const String lesson = '/lesson/:id';
 
   // quiz routes
@@ -56,7 +58,7 @@ class AppRoutes{
   static const String myCourses = '/teacher/courses';
   static const String teacherChats = '/teacher/chats';
   static const String createCourse = '/teacher/courses/create';
-  static const String teacherAnalytics = '/teacher/analytics';
+  static const String teacherAnalytics = '/teacher/analytics_dashboard';
   static const String studentProgress = '/teacher/students';
 
 
@@ -189,6 +191,11 @@ class AppRoutes{
             courseName: args['courseName'] ?? '',
             price: args['price'] ?? 0.0,
           ),
+        );
+
+      case analytics:
+        return MaterialPageRoute(
+          builder: (_) => AnalyticsDashboardScreen(),
         );
 
       default:
