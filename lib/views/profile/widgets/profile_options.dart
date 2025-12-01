@@ -28,7 +28,7 @@ class ProfileOptions extends StatelessWidget {
           title: 'Cài đặt',
           subtitle: 'Cài đặt ứng dụng theo ý muốn của bạn',
           icon: Icons.settings_outlined,
-          onTap: () {},
+          onTap: () => Get.toNamed(AppRoutes.settings),
         ),
         ProfileOptionsCard(
           title: 'Trợ giúp',

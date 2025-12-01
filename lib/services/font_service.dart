@@ -16,10 +16,10 @@ class FontService{
   };
 
   static const Map<String, double> fontSizeScales = {
-    'Small': 0.8,
-    'Normal': 1.0,
-    'Large': 1.2,
-    'Extra Large': 1.4,
+    'Nhỏ': 0.8,
+    'Bình thường': 1.0,
+    'Lớn': 1.2,
+    'Rất lớn': 1.4,
   };
 
   static double get currentFontScale => _storage.read(_fontSizeKey) ?? fontSizeScales['Normal']!;

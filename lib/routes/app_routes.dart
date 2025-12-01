@@ -15,6 +15,7 @@ import 'package:english_app/views/profile/edit_profile_screen.dart';
 import 'package:english_app/views/profile/profile_screen.dart';
 import 'package:english_app/views/quiz/quiz_attempt/quiz_attempt_screen.dart';
 import 'package:english_app/views/quiz/quiz_list/quiz_list_screen.dart';
+import 'package:english_app/views/settings/settings_screen.dart';
 import 'package:english_app/views/splash/splash_screen.dart';
 import 'package:english_app/views/teacher/create_course/create_course_screen.dart';
 import 'package:english_app/views/teacher/my_courses/my_courses_screen.dart';
@@ -53,6 +54,7 @@ class AppRoutes{
   static const String profile = '/profile';
   static const String editProfile = '/profile/edit';
   static const String notifications = '/notifications';
+  static const String settings = '/settings';
 
 
   // teacher
@@ -188,6 +190,11 @@ class AppRoutes{
       case notifications:
         return MaterialPageRoute(
           builder: (_) => const NotificationScreen(),
+        );
+
+      case settings:
+        return MaterialPageRoute(
+          builder: (_) => const SettingsScreen(),
         );
 
       case payment:
