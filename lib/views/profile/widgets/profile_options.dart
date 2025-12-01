@@ -34,7 +34,7 @@ class ProfileOptions extends StatelessWidget {
           title: 'Trợ giúp',
           subtitle: 'Nhận trợ giúp hoặc liên hệ bộ phận hỗ trợ',
           icon: Icons.edit_outlined,
-          onTap: () {},
+          onTap: () => Get.toNamed(AppRoutes.helpSupport),
         ),
         ProfileOptionsCard(
           title: 'Đăng xuất',

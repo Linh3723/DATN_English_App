@@ -11,6 +11,7 @@ import 'package:english_app/views/course/course_detail/course_detail_screen.dart
 import 'package:english_app/views/course/course_list/course_list_screen.dart';
 import 'package:english_app/views/course/lesson_screen/lesson_screen.dart';
 import 'package:english_app/views/course/payment/payment_screen.dart';
+import 'package:english_app/views/help_and_support/help_and_support_screen.dart';
 import 'package:english_app/views/home/home_screen.dart';
 import 'package:english_app/views/notifications/notification_screen.dart';
 import 'package:english_app/views/onboarding/onboarding_screen.dart';
@@ -98,6 +99,7 @@ class AppPages {
     GetPage(name: AppRoutes.settings, page: () => const SettingsScreen()),
     GetPage(name: AppRoutes.privacyPolicy, page: () => const PrivacyPolicyScreen()),
     GetPage(name: AppRoutes.termsConditions, page: () => const TermsConditionsScreen()),
+    GetPage(name: AppRoutes.helpSupport, page: () => const HelpAndSupportScreen()),
     GetPage(name: AppRoutes.teacherHome, page: () => const TeacherHomeScreen()),
     GetPage(name: AppRoutes.myCourses, page: () => const MyCoursesScreen()),
     GetPage(name: AppRoutes.teacherChats, page: () => const ChatListScreen()),
