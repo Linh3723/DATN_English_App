@@ -1,6 +1,7 @@
 import 'package:english_app/bloc/font/font_bloc.dart';
 import 'package:english_app/bloc/font/font_event.dart';
 import 'package:english_app/core/theme/app_colors.dart';
+import 'package:english_app/routes/app_routes.dart';
 import 'package:english_app/services/font_service.dart';
 import 'package:english_app/views/settings/widgets/setting_section.dart';
 import 'package:english_app/views/settings/widgets/setting_tile.dart';
@@ -84,16 +85,12 @@ class SettingsScreen extends StatelessWidget {
                   SettingTile(
                     title: 'Chính sách quyền riêng tư',
                     icon: Icons.privacy_tip_outlined,
-                    onTap: () {
-                      // navigate to privacy policy screen
-                    },
+                    onTap: () => Get.toNamed(AppRoutes.privacyPolicy),
                   ),
                   SettingTile(
                     title: 'Điều khoản dịch vụ',
                     icon: Icons.description_outlined,
-                    onTap: () {
-                      // navigate to privacy policy screen
-                    },
+                    onTap: () => Get.toNamed(AppRoutes.termsConditions),
                   ),
                 ],
               ),

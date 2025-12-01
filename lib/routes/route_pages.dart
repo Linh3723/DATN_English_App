@@ -14,6 +14,8 @@ import 'package:english_app/views/course/payment/payment_screen.dart';
 import 'package:english_app/views/home/home_screen.dart';
 import 'package:english_app/views/notifications/notification_screen.dart';
 import 'package:english_app/views/onboarding/onboarding_screen.dart';
+import 'package:english_app/views/privacy_&_terms_conditions/privacy_policy_screen.dart';
+import 'package:english_app/views/privacy_&_terms_conditions/terms_conditions_screen.dart';
 import 'package:english_app/views/profile/edit_profile_screen.dart';
 import 'package:english_app/views/profile/profile_screen.dart';
 import 'package:english_app/views/quiz/quiz_attempt/quiz_attempt_screen.dart';
@@ -94,6 +96,8 @@ class AppPages {
     GetPage(name: AppRoutes.analytics, page: () => AnalyticsDashboardScreen()),
     GetPage(name: AppRoutes.notifications, page: () => const NotificationScreen()),
     GetPage(name: AppRoutes.settings, page: () => const SettingsScreen()),
+    GetPage(name: AppRoutes.privacyPolicy, page: () => const PrivacyPolicyScreen()),
+    GetPage(name: AppRoutes.termsConditions, page: () => const TermsConditionsScreen()),
     GetPage(name: AppRoutes.teacherHome, page: () => const TeacherHomeScreen()),
     GetPage(name: AppRoutes.myCourses, page: () => const MyCoursesScreen()),
     GetPage(name: AppRoutes.teacherChats, page: () => const ChatListScreen()),
