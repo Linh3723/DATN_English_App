@@ -122,7 +122,7 @@ class DummyDataService {
       id: '1',
       title: 'Kiểm tra từ vựng',
       description: 'Kiểm tra một số từ vựng cơ bản',
-      timeLimit: 30,
+      timeLimit: 10,
       questions: _createBasicWordQuizQuestions(),
       createdAt: DateTime.now().subtract(const Duration(days: 5)),
       isActive: true,
@@ -131,8 +131,17 @@ class DummyDataService {
       id: '2',
       title: 'Kiểm tra đọc',
       description: 'Kiểm tra kỹ năng đọc',
-      timeLimit: 45,
+      timeLimit: 10,
       questions: _createReadingQuizQuestions(),
+      createdAt: DateTime.now().subtract(const Duration(days: 3)),
+      isActive: true,
+    ),
+    Quiz(
+      id: '3',
+      title: 'Kiểm tra viết',
+      description: 'Kiểm tra kỹ năng viết',
+      timeLimit: 45,
+      questions: _createWritingQuizQuestions(),
       createdAt: DateTime.now().subtract(const Duration(days: 3)),
       isActive: true,
     ),
@@ -495,6 +504,22 @@ class DummyDataService {
     ];
   }
 
+  static List<Question> _createWritingQuizQuestions() {
+    return [
+      Question(
+        id: '1',
+        text: '“Happy” có nghĩa là gì?',
+        options: [
+          Option(id: 'A', text: 'Buồn'),
+          Option(id: 'B', text: 'Vui'),
+          Option(id: 'C', text: 'Tức giận'),
+          Option(id: 'D', text: 'Lo lắng'),
+        ],
+        correctOptionId: 'B',
+        points: 1,
+      ),
+    ];
+  }
   static Quiz getQuizById(String id){
     return quizzes.firstWhere(
           (quiz) => quiz.id == id,

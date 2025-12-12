@@ -1,6 +1,8 @@
 import 'package:english_app/bloc/auth/auth_bloc.dart';
+import 'package:english_app/bloc/auth/auth_state.dart';
 import 'package:english_app/bloc/font/font_bloc.dart';
 import 'package:english_app/bloc/font/font_state.dart';
+import 'package:english_app/config/firebase_config.dart';
 import 'package:english_app/core/theme/app_theme.dart';
 import 'package:english_app/routes/app_routes.dart';
 import 'package:english_app/routes/route_pages.dart';
@@ -8,9 +10,12 @@ import 'package:english_app/services/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await FirebaseConfig.init();
+  await GetStorage.init();
 
   await StorageService.init();
   runApp(const MyApp());
@@ -22,27 +27,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [
-          BlocProvider<FontBloc>(
-              create: (context) => FontBloc(),
-          ),
-          BlocProvider<AuthBloc>(
-              create: (context) => AuthBloc(),
-          ),
-        ],
-        child: BlocBuilder<FontBloc, FontState>(
-            builder: (context, fontState){
-              return GetMaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'English Learning App',
-                theme: AppTheme.getLightTheme(fontState),
-                themeMode: ThemeMode.light,
-                initialRoute: AppRoutes.splash,
-                onGenerateRoute: AppRoutes.onGenerateRoute,
-                getPages: AppPages.pages,
+      providers: [
+        BlocProvider<FontBloc>(
+          create: (context) => FontBloc(),
+        ),
+        BlocProvider<AuthBloc>(
+          create: (context) => AuthBloc(),
+        ),
+      ],
+      child: BlocBuilder<FontBloc, FontState>(
+        builder: (context, fontState){
+          return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'English Learning App',
+            theme: AppTheme.getLightTheme(fontState),
+            themeMode: ThemeMode.light,
+            initialRoute: AppRoutes.splash,
+            onGenerateRoute: AppRoutes.onGenerateRoute,
+            getPages: AppPages.pages,
+
+            builder: (context, child) {
+              return BlocListener<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if(state.error != null){
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(state.error!),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                  }
+                },
+                child: child!,
               );
-            })
+            },
+          );
+        },
+      ),
     );
-        
   }
 }

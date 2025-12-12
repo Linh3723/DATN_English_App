@@ -1,4 +1,5 @@
 import 'package:english_app/bloc/auth/auth_bloc.dart';
+import 'package:english_app/models/user_model.dart';
 import 'package:english_app/routes/app_routes.dart';
 import 'package:english_app/services/storage_service.dart';
 import 'package:flutter/material.dart';
@@ -60,10 +61,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     if(StorageService.isFirstTime()){
       StorageService.setFirstTime(false);
       // navigate to onboarding screen
+      StorageService.setFirstTime(false);
       Get.offNamed(AppRoutes.onboarding);
     } else if (authState.userModel != null){
-      // navigate to home screen
-      Get.offNamed(AppRoutes.main);
+      // navigate based on user role
+      if(authState.userModel!.role == UserRole.teacher){
+        Get.offNamed(AppRoutes.teacherHome);
+      } else {
+        Get.offNamed(AppRoutes.main);
+      }
     } else {
       // navigate to login screen
       Get.offNamed(AppRoutes.login);
